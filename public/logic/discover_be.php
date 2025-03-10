@@ -55,6 +55,10 @@ isset($_GET['list']) ? $requestData['lid'] = $_GET['list'] : !isset($requestData
 $playlists = empty($requestData) ? null : select_from('listings', [], $requestData);
 
 $requestData = [];
+isset($_SESSION['mp_UserId']) ? $requestData['user_id'] = $_SESSION['mp_UserId'] : !isset($requestData['user_id']);
+$my_lists = empty($requestData) ? null : select_from('listings', [], $requestData);
+
+$requestData = [];
 isset($_GET['list']) ? $requestData['user_id'] = $playlists[0]['user_id'] : !isset($requestData['user_id']);
 $owner_by_list_id = select_from('users', [], $requestData, ['fetch_first' => true]);
 
